@@ -1,0 +1,70 @@
+﻿@* Strong type views *@
+@model List<GestorPacientes.Core.Application.ViewModels.ResultadosLaboratorio.ResultadosLaboratorioViewModel>
+
+
+<div class="row mb-3">
+
+    <h2 class="text-center nav-link text-dark fw-bold"> Mantenimiento De Resultados De Laboratorio </h2>
+
+</div>
+
+<div class="row align-content-center">
+    <div class="col-8 offset-2">
+      
+        <div class="card">
+            <div class="card-header bg-dark text-light">
+                <h4>Filtrar por Cedula</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" asp-controller="ResultadosLaboratorio" asp-action="Index">
+                    <div class="form-group">
+                        <label for="card-number">Cedula del Paciente</label>
+                        <input type="text" class="form-control" id="card-number" name="CardNumber" placeholder="Escriba la cedula del paciente">
+                    </div>
+                    <button type="submit" class="btn btn-success mb-3">Filtrar</button>
+                </form>
+            </div>
+
+        <div class="card">
+            <div class="card-header bg-dark text-light">
+                Lista de Resultados Pendientes             
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Cedula</th>
+                            <th scope="col">Prueba</th>
+                            <th scope="col">Reportar Resuiltados</th>                  
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                                @if (item.IdResultState == 1) 
+                                {      <tr>
+                                     
+                                        <td>@item.PacientName</td>
+                                        <td>@item.PacientLastName</td>
+                                        <td>@item.PacientCard</td>
+                                        <td>@item.TestName</td>
+                                        <td>
+                                            <a asp-controller="ResultadosLaboratorio" asp-action="Reportar" asp-route-id="@item.Id" class="btn btn-success">
+                                                <i class="fa-solid fa-square-poll-vertical"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script src="https://kit.fontawesome.com/47ea8ef61d.js" crossorigin="anonymous"></script>
+    </div>
+</div>
+</div>
+

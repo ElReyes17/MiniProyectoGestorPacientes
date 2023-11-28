@@ -1,0 +1,79 @@
+﻿@* Strong type views *@
+@model List<GestorPacientes.Core.Application.ViewModels.Usuarios.UsuariosViewModel>
+
+    @{
+        string tipo = "";
+    }
+
+<div class="row mb-3">
+
+    <h2 class="text-center nav-link text-dark fw-bold"> Mantenimiento De Usuarios </h2>
+
+</div>
+
+<div class="row align-content-center">
+    <div class="col-8 offset-2">
+
+        <div class="card">
+            <div class="card-header bg-dark text-light">
+                Lista de Usuarios
+                <div class="text-end">
+                    <a class="btn btn-success float-end" asp-controller="Usuarios" asp-action="Create">Nuevo Usuario</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Correo</th>
+                            <th scope="col">UserName</th>
+                            <th scope="col">Tipo de Usuario</th>
+                            <th scope="col">Editar</th>
+                            <th scope="col">Eliminar</th>
+                         
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.LastName</td>
+                                <td>@item.Email</td>
+                                <td>@item.UserName</td>
+                                @if (@item.RolName == "1")
+                                {
+                                    tipo = "Administrador";
+                                }
+                                else if (@item.RolName == "2")
+                                {
+                                    tipo = "Asistente";
+                                }                            
+                                <td>@tipo</td>
+                                
+                                
+                                <td>
+                                <a class="btn btn-primary btn-edit" asp-controller="Usuarios" asp-action="Edit" asp-route-id="@item.Id">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                                 </td>
+
+                                <td>
+                                    <a asp-controller="Usuarios" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
+                                        <i class="fa-solid fa-eraser"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script src="https://kit.fontawesome.com/47ea8ef61d.js" crossorigin="anonymous"></script>
+    </div>
+</div>
+

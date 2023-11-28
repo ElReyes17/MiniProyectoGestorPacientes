@@ -1,0 +1,83 @@
+﻿@* Strong type views *@
+@model List<GestorPacientes.Core.Application.ViewModels.Citas.CitasViewModel>
+
+
+<div class="row mb-3">
+
+    <h2 class="text-center nav-link text-dark fw-bold"> Mantenimiento De Citas </h2>
+
+</div>
+
+<div class="row align-content-center">
+    <div class="col-8 offset-2">
+
+        <div class="card">
+            <div class="card-header bg-dark text-light">
+                Lista de Citas
+                <div class="text-end">
+                    <a class="btn btn-success float-end" asp-controller="Citas" asp-action="Create">Nueva Cita</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Paciente</th>
+                            <th scope="col">Medico</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Hora</th>
+                            <th scope="col">Causa</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Accion</th>
+                            <th scope="col">Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.PacientName</td>
+                                <td>@item.DoctorName</td>
+                                <td>@item.Date</td>
+                                <td>@item.Time</td>
+                                <td>@item.Cause</td>
+                                <td>@item.AppointmentState</td>      
+                                <td>
+                                    @if(item.IdState == 1)
+                                    {
+                                        <a class="btn btn-primary" asp-controller="Citas" asp-action="Pruebas" asp-route-id="@item.IdPacient" , asp-route-id2="@item.Id" class="btn btn-danger">
+                                            Consultar
+                                        </a>
+                                    }
+                                    else if (item.IdState == 2)
+                                    {
+                                        <a class="btn btn-primary" asp-controller="Citas" asp-action="Resultados" asp-route-id="@item.Id" class="btn btn-danger">
+                                            Consultar Resultados
+                                        </a>
+                                    }
+                                    else if(item.IdState == 3)
+                                    {
+                                        <a class="btn btn-primary" asp-controller="Citas" asp-action="VeResultados" asp-route-id="@item.Id" class="btn btn-danger">
+                                            Ver Resultados
+                                        </a>
+                                    }
+
+                                    
+                                </td>
+                                <td>
+                                    <a asp-controller="Citas" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
+                                        <i class="fa-solid fa-eraser"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script src="https://kit.fontawesome.com/47ea8ef61d.js" crossorigin="anonymous"></script>
+    </div>
+</div>
+

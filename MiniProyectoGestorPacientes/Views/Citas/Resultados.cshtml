@@ -1,0 +1,65 @@
+﻿@* Strong type views *@
+@model List<GestorPacientes.Core.Application.ViewModels.ResultadosLaboratorio.ResultadosLaboratorioViewModel>
+
+
+<div class="row mb-3">
+
+    <h2 class="text-center nav-link text-dark fw-bold"> Resultados De Laboratorio </h2>
+
+</div>
+
+<div class="row align-content-center">
+    <div class="col-8 offset-2">
+
+        <div class="card">
+            <div class="card-header bg-dark text-light">
+
+             
+                <div>
+                Lista de Resultados
+                    <a asp-controller="Citas" asp-action="Index" class="btn btn-success float-end">
+                    Volver
+                </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre de Prueba</th>
+                            <th scope="col">Estado de Resultado</th>            
+                            <th scope="col">Completar Cita</th>
+                            <th scope="col">Cerrar Resultados</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                
+                                                              
+                                <td>@item.TestName</td>
+                                <td>@item.ResultStates</td>
+                                
+                                <td>
+                                    <a asp-controller="Citas" asp-action="Completado" asp-route-id="@item.IdAppoimente" class="btn btn-success">
+                                        <i class="fa-solid fa-check"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a asp-controller="Citas" asp-action="Index"  class="btn btn-danger">
+                                        <i class="fa-solid fa-x"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script src="https://kit.fontawesome.com/47ea8ef61d.js" crossorigin="anonymous"></script>
+    </div>
+</div>
+

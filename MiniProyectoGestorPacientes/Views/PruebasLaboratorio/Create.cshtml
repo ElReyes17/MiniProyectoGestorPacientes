@@ -1,0 +1,40 @@
+﻿@model GestorPacientes.Core.Application.ViewModels.PruebasLaboratorio.SavePruebasLaboratorioViewModel
+@{
+    bool modoEditar = Model.Id == 0 ? true : false;
+
+}
+<div class="row mb-3">
+
+    <h2 class="text-center"> Mantenimiento de Pruebas </h2>
+</div>
+
+<div class="row">
+    <div class="col-4 offset-4">
+        <div class="card">
+            <div class="card-header bg-success text-light">
+                <h4>@(modoEditar ? "Creando una Prueba" : $"Editando Prueba: {Model.TestName}")</h4>
+            </div>
+            <div class="card-body">
+
+                <form method="POST" asp-controller="PruebasLaboratorio" asp-action="@(modoEditar ? "Create" : "EditPost")">
+
+
+                    <div class="mb-3">
+                        <label class="form-label">Nombre de la Prueba</label>
+                        <input asp-for="TestName" type="text" class="form-control mb-3" />
+                        <span class="text-danger" asp-validation-for="TestName"> </span>
+                    </div>
+
+
+                    <input type="hidden" asp-for="Id" />
+
+                    <button type="submit" class="btn btn-success float-end mb-3">Agregar</button>
+
+                </form>
+                <a class="btn btn-success float-end mb-3" asp-controller="PruebasLaboratorio" asp-action="Index">Volver</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+

@@ -1,0 +1,65 @@
+﻿@model GestorPacientes.Core.Application.ViewModels.ResultadosLaboratorio.SaveResultadosLaboratorioViewModel
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+
+<div class="row mb-3">
+    <h2 class="text-center nav-link text-black fw-bold"> Pendiente de Consulta </h2>
+</div>
+
+<div class="row mb-3">
+    <div class="col-6 offset-3">
+        <div class="card">
+            <div class="card-header bg-dark text-light">
+                <h4>Elegir prueba de laboratorio</h4>
+       
+            </div>
+            <div class="card-body">
+                <form method="post" asp-controller="Citas" asp-action="PruebasPost" id="pruebas-form">
+                 
+                    <div class="mb-3">                      
+                        <label asp-for="Pruebas" class="form-label">Prueba</label>
+                        <select asp-for="Pruebas"  id="test" multiple asp-items="@(new SelectList(Model.LabTest, "Id", "TestName"))" type="number">
+                            <option value="0">Seleccione una Prueba de Laboratorio</option>
+                        </select>
+                        <span asp-validation-for="Pruebas" class="text-danger"></span>
+                    </div>
+
+                    <input type="hidden" asp-for="IdLabTest" />
+                    <input type="hidden" asp-for="IdResultState"/>
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="IdCita" />
+                    <input type="hidden" asp-for="IdPacients" />
+
+                    <div id="select-container"></div>
+
+                    <a asp-controller="Citas" asp-action="Index" class="btn btn-primary">Cancelar</a>
+                    <button type="submit" id="agregar-prueba" class="btn btn-success">Agregar Pruebas</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
+<script>
+    new MultiSelectTag('test')  
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

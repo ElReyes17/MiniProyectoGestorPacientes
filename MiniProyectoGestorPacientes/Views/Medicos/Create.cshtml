@@ -1,0 +1,83 @@
+﻿@model GestorPacientes.Core.Application.ViewModels.Medicos.SaveMedicosViewModel
+@{
+    bool modoEditar = Model.Id == 0 ? true : false;
+
+}
+<div class="row mb-3">
+
+    <h2 class="text-center"> Mantenimiento de Medicos </h2>
+</div>
+
+<div class="row">
+    <div class="col-4 offset-4">
+        <div class="card">
+            <div class="card-header bg-success text-light">
+                <h4>@(modoEditar ? "Agregando un Medico" : $"Editando Medico: {Model.Name}")</h4>
+            </div>
+            <div class="card-body">
+
+                <form method="POST" asp-controller="Medicos" asp-action="@(modoEditar ? "Create" : "EditPost")" enctype="multipart/form-data">
+
+
+                    <div class="mb-3">
+                        <label class="form-label">Nombre</label>
+                        <input asp-for="Name" type="text" class="form-control mb-3" />
+                        <span class="text-danger" asp-validation-for="Name"> </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Apellido</label>
+                        <input asp-for="LastName" type="text" class="form-control mb-3" />
+                        <span class="text-danger" asp-validation-for="LastName"> </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Correo</label>
+                        <input asp-for="Email" type="text" class="form-control mb-3" />
+                        <span class="text-danger" asp-validation-for="Email"> </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Num. Telefonico</label>
+                        <input asp-for="PhoneNumber" type="text" class="form-control mb-3" />
+                        <span class="text-danger" asp-validation-for="PhoneNumber"> </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Cedula</label>
+                        <input asp-for="CardNumber" type="text" class="form-control mb-3" />
+                        <span class="text-danger" asp-validation-for="CardNumber"> </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="File" class="form-label">Introduzca una Imagen: </label>
+                        @if (modoEditar)
+                        {
+                            <input asp-for="File" class="form-control" />
+                        }
+                        else
+                        {
+                            <input required asp-for="File" class="form-control" />
+                        }
+
+                        <span asp-validation-for="File" class="text-danger"></span>
+                      
+                    </div>
+
+                   
+
+
+
+                    <input type="hidden" asp-for="Id" />
+
+                    <button type="submit" class="btn btn-success float-end mb-3">Agregar</button>
+
+                </form>
+                <a class="btn btn-success float-end mb-3" asp-controller="Medicos" asp-action="Index">Volver</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

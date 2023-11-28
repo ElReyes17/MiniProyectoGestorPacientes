@@ -1,0 +1,43 @@
+﻿@model GestorPacientes.Core.Application.ViewModels.Usuarios.LoginViewModel
+
+
+<div class="row mb-3">
+
+    <h2 class="text-center nav-link text-white fw-bold"> BIENVENIDO AL HOSPITAL DARIO CONTRERAS </h2>
+
+</div>
+
+<div class="row mb-3">
+    <div class="col-6 offset-3">
+        <div class="card">
+            <div class="card-header bg-success text-light">
+                <h4>INICIAR SESION</h4>
+            </div>
+            <div class="card-body">
+
+                @Html.ValidationSummary(false, "", new{@class="text-danger"})
+
+                <form method="post" asp-controller="Usuarios" asp-action="Login">
+
+                    <div class="mb-3">
+                        <label class="form-label">Nombre de Usuario</label>
+                        <input asp-for="Username" type="text" class="form-control mb-3" />
+                 
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label class="form-label">Contraseña</label>
+                        <input asp-for="Password" type="password" class="form-control mb-3" />
+                        
+                    </div>
+
+
+                    <button type="submit" class="btn btn-success">Iniciar Sesion</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

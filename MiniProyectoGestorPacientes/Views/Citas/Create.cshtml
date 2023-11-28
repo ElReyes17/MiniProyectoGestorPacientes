@@ -1,0 +1,72 @@
+﻿@model GestorPacientes.Core.Application.ViewModels.Citas.SaveCitasViewModel
+
+<div class="row mb-3">
+
+    <h2 class="text-center"> Mantenimiento de Citas </h2>
+</div>
+
+<div class="row">
+    <div class="col-4 offset-4">
+        <div class="card">
+            <div class="card-header bg-success text-light">
+                <h4>Creando una Cita</h4>
+            </div>
+            <div class="card-body">
+
+                <form method="POST" asp-controller="Citas" asp-action="Create">
+
+
+                    <div class="mb-3">
+                        <label asp-for="IdPacient" class="form-label">Nombre Paciente</label>
+                        <select asp-for="IdPacient" asp-items="@(new SelectList(Model.Pacients, "Id","Name"))" type="number" class="form-select mb-3">
+                            <option value="0">Seleccione un Paciente</option>
+
+                        </select>
+                        <span asp-validation-for="IdPacient" class="text-danger"> </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="IdDoctor" class="form-label">Nombre Medico</label>
+                        <select asp-for="IdDoctor" asp-items="@(new SelectList(Model.Doctors, "Id","Name"))" type="number" class="form-select mb-3">
+                            <option value="0">Seleccione un Paciente</option>
+                        </select>
+                        <span asp-validation-for="IdDoctor" class="text-danger"> </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Fecha de la Cita</label>
+                        <input asp-for="Date" type="date" class="form-control mb-3" />
+                        <span class="text-danger" asp-validation-for="Date"> </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Hora de la Cita</label>
+                        <input asp-for="Time" type="time" class="form-control mb-3" />
+                        <span class="text-danger" asp-validation-for="Time"> </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Causa</label>
+                        <input asp-for="Cause" type="text" class="form-control mb-3" />
+                        <span class="text-danger" asp-validation-for="Cause"> </span>
+                    </div>
+
+                   
+
+          
+
+                    <input type="hidden" asp-for="Id" />
+
+                    <button type="submit" class="btn btn-success float-end mb-3">Agregar</button>
+
+                </form>
+                <a class="btn btn-success float-end mb-3" asp-controller="Citas" asp-action="Index">Volver</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@{
+}

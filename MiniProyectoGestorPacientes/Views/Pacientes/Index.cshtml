@@ -1,0 +1,91 @@
+﻿@model List<GestorPacientes.Core.Application.ViewModels.Pacientes.PacientesViewModel>
+
+@{
+    string Fumar;
+    string Alergia;
+}
+
+<div class="container-fluid">
+
+    <div class="row mb-3">
+
+        <h2 class="text-center nav-link text-dark fw-bold"> Mantenimiento De Pacientes </h2>
+        <div class="col-3 offset-9">
+            <a class="btn btn-success" asp-controller="Pacientes" asp-action="Create">Agregar Nuevo Paciente</a>
+        </div>
+    </div>
+
+    <div class="row">
+        
+        @foreach (var item in Model)
+        {
+            <div class="col-4 mb-3">
+                <div class="card shadow-sm">
+
+                    <img src="@item.Photo" class="img-product-size bd-placeholder-img card-img-top " />
+
+                    <div class="card-body">
+                    <ul>
+                            <li>  <h7><b>Nombre</b>: @item.Name</h7> </li>
+                            <li>  <h7><b>Apellido</b>: @item.LastName</h7> </li>
+                            <li>  <h7><b>Cedula</b>: @item.CardNumber</h7> </li>
+                            <li>  <h7><b>Direccion</b>: @item.Adress</h7> </li>
+                            <li> <h7><b>Telefono</b>: @item.PhoneNumber</h7> </li>
+                            <li> <h7><b>Correo</b>: @item.Email</h7> </li>
+                            <li> <h7><b> Fecha de Nacimiento</b>: @item.BirthDate</h7></li>
+                        @if(item.Smoke == true)
+                        {
+                            Fumar = "Si";
+                        }
+                        else
+                        {
+                            Fumar = "No";
+                        }
+                         <li>
+                                <h7><b>Fuma</b>:@Fumar</h7>
+                            </li>
+                        @if (item.Alergy == true)
+                        {
+                            Alergia = "Si";
+                        }
+                        else
+                        {
+                            Alergia = "No";
+                        }
+                            <li><h7><b>Alergia</b>: @Alergia</h7></li>
+                        </ul>
+                        <div>
+                            <div class="btn-group">
+
+                                <a class="btn btn-primary btn-edit" asp-controller="Pacientes" asp-action="Edit" asp-route-id="@item.Id">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                                <a asp-controller="Pacientes" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
+                                    <i class="fa-solid fa-eraser"></i>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+
+</div>
+
+
+
+<script src="https://kit.fontawesome.com/47ea8ef61d.js" crossorigin="anonymous"></script>
+
+
+<style>
+
+    .card img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+    }
+
+</style> 

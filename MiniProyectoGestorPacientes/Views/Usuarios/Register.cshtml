@@ -1,0 +1,77 @@
+﻿@model GestorPacientes.Core.Application.ViewModels.Usuarios.SaveUsuariosViewModel
+
+<div class="row mb-3">
+    <h2 class="text-center"> REGISTRO </h2>
+</div>
+
+<div class="row">
+    <div class="col-4 offset-4">
+        <div class="card">
+            <div class="card-header bg-success text-light">
+                <h4> Creando un Usuario </h4>
+            </div>
+            <div class="card-body">
+                @Html.ValidationSummary(false, "", new{@class="text-danger"})
+                <form method="POST" asp-controller="Usuarios" asp-action="Register">
+
+                    <div class="mb-3">
+                        <label class="form-label">Nombre</label>
+                        <input asp-for="Name" type="text" class="form-control mb-3" />
+                        <span class="text-danger" asp-validation-for="Name"> </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Apellido</label>
+                        <input asp-for="LastName" type="text" class="form-control mb-3" />
+                        <span class="text-danger" asp-validation-for="LastName"> </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Correo</label>
+                        <input asp-for="Email" type="text" class="form-control mb-3" />
+                        <span class="text-danger" asp-validation-for="Email"> </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Nombre de Usuario</label>
+                        <input asp-for="UserName" type="text" class="form-control mb-3" />
+                        <span class="text-danger" asp-validation-for="UserName"> </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Contraseña</label>
+                        <input asp-for="Password" type="password" class="form-control mb-3" />
+                        <span class="text-danger" asp-validation-for="Password"> </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Confirmar Contraseña</label>
+                        <input asp-for="ConfirmPassword" type="password" class="form-control mb-3" />
+                        <span class="text-danger" asp-validation-for="ConfirmPassword"> </span>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label asp-for="RoleName" class="form-label">Rol de Usuario</label>
+                        <select asp-for="RoleName" type="text" class="form-select mb-3">
+                            <option value="">Seleccione un Tipo de Usuario</option>
+                            <option value="1"> Administrador </option>
+                            <option value="2"> Asistente </option>
+                        </select>
+                        <span asp-validation-for="RoleName" class="text-danger"> </span>
+                    </div>
+
+
+                    <input type="hidden" asp-for="Id" />
+
+                    <button type="submit" class="btn btn-success float-end mb-3">Agregar</button>
+
+                </form>
+
+                <a class="btn btn-success float-end mb-3" asp-controller="Usuarios" asp-action="Login">Volver</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+

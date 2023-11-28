@@ -1,0 +1,30 @@
+﻿@model GestorPacientes.Core.Application.ViewModels.Usuarios.SaveUsuariosViewModel
+
+
+<div class="row mb-3">
+
+    <h2 class="text-center nav-link text-white fw-bold"> Eliminar Usuario </h2>
+
+</div>
+
+<div class="row mb-3">
+    <div class="col-6 offset-3">
+        <div class="card">
+            <div class="card-header bg-success text-light">
+                <h4>Esta seguro que desea eliminar el usuario @Model.Name?</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" asp-controller="Usuarios" asp-action="DeletePost">
+
+                    <input type="hidden" asp-for="Id" />
+
+                    <a asp-controller="Usuarios" asp-action="Index" class="btn btn-primary">Cancelar</a>
+                    <button type="submit" class="btn btn-danger">Aceptar</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

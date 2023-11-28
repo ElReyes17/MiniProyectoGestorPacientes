@@ -1,0 +1,39 @@
+﻿@model GestorPacientes.Core.Application.ViewModels.ResultadosLaboratorio.SaveResultadosLaboratorioViewModel
+
+
+<div class="row mb-3">
+
+    <h2 class="text-center nav-link text-white fw-bold"> REPORTAR RESULTADO </h2>
+
+</div>
+
+<div class="row mb-3">
+    <div class="col-6 offset-3">
+        <div class="card">
+            <div class="card-header bg-success text-light">
+                <h4>Esta seguro que desea Finalizar el Proceso?</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" asp-controller="ResultadosLaboratorio" asp-action="PostReportar">
+                 
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Resultado de prueba de Laboratorio</label>
+                        <input asp-for="Resultado" type="text" class="form-control mb-3" />
+                        <span class="text-danger" asp-validation-for="Resultado"> </span>
+                    </div>
+
+
+                    <input type="hidden" asp-for="Id"/>
+                    <input type="hidden" asp-for="IdCita"/>
+                    <input type="hidden" asp-for="IdPacients"/>
+                    <input type="hidden" asp-for="IdLabTest"/>
+                   
+
+                    <a asp-controller="ResultadosLaboratorio" asp-action="Index" class="btn btn-primary">Volver</a>
+                    <button type="submit" class="btn btn-danger">Finalizar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
